@@ -4,6 +4,7 @@
     <title>Shorten URLs - Track Everything</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Transform long URLs into short, trackable links with real-time analytics, platform detection, and QR codes.">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
@@ -239,7 +240,22 @@
             background: rgba(34, 197, 94, 0.2);
             color: #16a34a;
         }
-        
+
+        .stat-badge {
+            background: rgba(102, 126, 234, 0.15);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            color: #818cf8;
+            border-radius: 8px;
+            padding: 0.35rem 0.9rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-left: 1rem;
+        }
+
+        .result-label i {
+            color: #667eea;
+        }
+
         .platforms_container {
             margin-top: 16px;
             padding-top: 16px;
@@ -392,7 +408,7 @@
                 </div>
                 <div class="col-md-4">
                   <button type="button" id="shorten_url" class="btn btn-primary btn-block">
-                    <span class="btn-text">Shorten URL</span>
+                    <i class="fas fa-link mr-2"></i><span class="btn-text">Shorten URL</span>
                   </button>
                 </div>
               </div>
@@ -402,49 +418,47 @@
               <div class="result-card">
                 <div class="d-flex align-items-center mb-3">
                   <i class="fas fa-check-circle text-success mr-2"></i>
-                  <h5 class="mb-0" style="color: #22c55e;">Shortened URL</h5>
+                  <h5 class="mb-0" style="color: #22c55e;">Your short link is ready!</h5>
                 </div>
-                
+
                 <div class="result-item short_link_container">
-                  <div class="result-label">Shortened URL</div>
+                  <div class="result-label"><i class="fas fa-link mr-2"></i>Shortened URL</div>
                   <div class="result-value d-flex align-items-center justify-content-between">
                     <span class="short_link"></span>
-                    <button class="btn copy-btn" onclick="copyToClipboard()">
-                      <i class="fas fa-copy mr-1"></i>
+                    <button class="btn copy-btn copy_link_btn" onclick="copyToClipboard()">
+                      <i class="fas fa-copy mr-1"></i> Copy
                     </button>
                   </div>
                 </div>
-                
+
                 <div class="result-item">
-                  <div class="result-label">Original URL</div>
+                  <div class="result-label"><i class="fas fa-globe mr-2"></i>Original URL</div>
                   <div class="result-value original_link"></div>
                 </div>
-                
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="result-item">
                       <div class="result-label d-flex align-items-center justify-content-between">
-                        <span>Total Clicks</span>
-                        <button class="btn copy-btn">
-                          <span class="result-value clicks">0</span>
-                        </button>
+                        <span><i class="fas fa-mouse-pointer mr-2"></i>Total Clicks</span>
+                        <span class="stat-badge clicks">0</span>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="result-item">
                       <div class="result-label d-flex align-items-center justify-content-between">
-                        <span>QR Code</span>
+                        <span><i class="fas fa-qrcode mr-2"></i>QR Code</span>
                         <button class="btn copy-btn qr_code_btn">
-                          <i class="fas fa-qrcode mr-1"></i>
+                          <i class="fas fa-download mr-1"></i> Download
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="result-item platforms_container" style="display: none;">
-                  <div class="result-label">Platform Analytics</div>
+                  <div class="result-label"><i class="fas fa-chart-pie mr-2"></i>Platform Analytics</div>
                   <div class="result-value platforms"></div>
                 </div>
               </div>
@@ -479,7 +493,7 @@
               </div>
               <h3 class="feature-title">Advanced Analytics</h3>
               <p class="feature-description">
-                Track clicks, QR based redirection data, referrer sources, and user behavior with detailed real-time analytics.
+                Track clicks, QR-based redirections, referrer sources, and user behavior with detailed, real-time analytics.
               </p>
             </div>
           </div>
@@ -501,7 +515,7 @@
     
     <footer class="footer">
       <div class="container">
-        <p>&copy; Created by Mahir Patel 2025</p>
+        <p>&copy; 2025 Mahir Patel. All rights reserved.</p>
       </div>
     </footer>
 
@@ -644,10 +658,10 @@
                 navigator.clipboard.writeText(shortLink).then(function() {
                     showNotification('URL copied to clipboard!', 'success');
                     
-                    // Visual feedback
-                    $('.copy-btn').html('<i class="fas fa-check mr-1"></i> Copied!');
+                    // Visual feedback (scoped to the copy button only)
+                    $('.copy_link_btn').html('<i class="fas fa-check mr-1"></i> Copied!');
                     setTimeout(function() {
-                        $('.copy-btn').html('<i class="fas fa-copy mr-1"></i> Copy');
+                        $('.copy_link_btn').html('<i class="fas fa-copy mr-1"></i> Copy');
                     }, 2000);
                 }).catch(function() {
                     // Fallback for older browsers

@@ -9,7 +9,6 @@ class Home extends CI_Controller {
 		if(isset($param) && is_array($param) && count($param) > 0){
 			reset($param);
 			$query_param = key($param);
-			echo $query_param;
 			if($query_param != ''){
 				$shortCode = $query_param;
 			}

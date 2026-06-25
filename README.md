@@ -204,11 +204,9 @@ CREATE TABLE `shortener_links` (
 ### Create Shortened URL
 **Endpoint**: `POST /Home/create`
 
-**Request Format**:
-```json
-{
-  "url": "https://example.com/very/long/url/path"
-}
+**Request Format**: `application/x-www-form-urlencoded`
+```
+url=https://example.com/very/long/url/path
 ```
 
 **Response Format**:
@@ -351,7 +349,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆕 Changelog
 
-### Version 1.0.0 (2025-01-XX)
+### Version 1.0.0 (2025)
 - Initial release
 - URL shortening with collision detection
 - Real-time click tracking and analytics
